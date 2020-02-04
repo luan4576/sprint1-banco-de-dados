@@ -1,0 +1,45 @@
+CREATE DATABASE LocadoraDDL;
+
+USE LocadoraDDL
+
+CREATE TABLE Marcas (
+IdMarca INT PRIMARY KEY IDENTITY,
+Nome VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE Modelos (
+IdModelo INT PRIMARY KEY IDENTITY,
+NomeModelo VARCHAR (200),
+IdMarca INT FOREIGN KEY REFERENCES Marcas(IdMarca)
+);
+
+CREATE TABLE Veiculos (
+IdVeiculo INT PRIMARY KEY IDENTITY,
+Placa VARCHAR (200),
+IdEmpresa INT FOREIGN KEY REFERENCES Empresas(IdEmpresa),
+IdModelo INT FOREIGN KEY REFERENCES Modelos (IdModelo)
+);
+
+CREATE TABLE Empresas (
+IdEmpresa INT PRIMARY KEY IDENTITY,
+Nome VARCHAR (200)
+);
+
+CREATE TABLE Alugueis (
+IdAluguel INT PRIMARY KEY IDENTITY,
+DataInicio DATE,
+IdCliente INT FOREIGN KEY REFERENCES Clientes(IdCliente),
+DataFim DATE,
+IdVeiculo INT FOREIGN KEY REFERENCES Veiculos (IdVeiculo)
+);
+
+CREATE TABLE Clientes (
+IdCliente INT PRIMARY KEY IDENTITY,
+Nome VARCHAR (200),
+CPF INT
+);
+
+
+
+
+
